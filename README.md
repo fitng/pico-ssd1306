@@ -19,8 +19,9 @@ ssd1306_t display;
 int main() {
     stdio_init_all();
 
-    // Инициализация: объект, порт I2C, адрес (0x3C), пин SDA, пин SCL
-    oled_init(&display, i2c0, 0x3C, 4, 5);
+    // Инициализация: объект, порт I2C, адрес (0x3C), пин SDA, пин SCL, разрешение экрана(x, y)
+    oled_init(&display, i2c0, 0x3C, 4, 5, 128, 64);
+
     // Очищаем экран
     ssd1306_clear(&display);
 

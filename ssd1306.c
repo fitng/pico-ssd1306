@@ -18,13 +18,14 @@ static void send_init_commands(void) {
     i2c_write_blocking(current_i2c, current_addr, init_cmds, sizeof(init_cmds), false);
 }
 
-void oled_init(ssd1306_t *p, i2c_inst_t *i2c, uint8_t addr, uint_fast8_t sda_pin, uint_fast8_t scl_pin) {
+void oled_init(ssd1306_t *p, i2c_inst_t *i2c, uint8_t addr, uint_fast8_t sda_pin, uint_fast8_t scl_pin, uint8_t widh, uint8_t heigh) {
     current_i2c = i2c;
     current_addr = addr;
 
-    p->width = 128;
-    p->height = 64;
-    p->buffer = frame_buffer;
+    p->width = widh;
+    p->height = heigh;
+    uint32_t buffer_size = (p->width * p->height) / 8;
+    p->buffer = malloc(buffer_size);
 
     i2c_init(current_i2c, 400 * 1000);
     gpio_set_function(sda_pin, GPIO_FUNC_I2C);
