@@ -2,6 +2,7 @@
 #include "pico/stdlib.h"
 #include "hardware/i2c.h"
 #include "ssd1306.h"
+#include <stdlib.h>
 
 static i2c_inst_t *current_i2c;
 static uint8_t current_addr;
