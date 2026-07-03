@@ -16,4 +16,6 @@ void ssd1306_draw_pixel(ssd1306_t *p, uint32_t x, uint32_t y);
 
 void ssd1306_show(ssd1306_t *p);
 
+void ssd1306_clear(ssd1306_t *p);
+
 #endif

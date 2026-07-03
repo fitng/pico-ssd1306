@@ -21,6 +21,8 @@ int main() {
 
     // Инициализация: объект, порт I2C, адрес (0x3C), пин SDA, пин SCL
     oled_init(&display, i2c0, 0x3C, 4, 5);
+    // Очищаем экран
+    ssd1306_clear(&display);
 
     // Рисуем точку по центру экрана (X: 64, Y: 32)
     ssd1306_draw_pixel(&display, 64, 32);

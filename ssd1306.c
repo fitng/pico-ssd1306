@@ -37,8 +37,8 @@ void oled_init(ssd1306_t *p, i2c_inst_t *i2c, uint8_t addr, uint_fast8_t sda_pin
 }
 
 void ssd1306_draw_pixel(ssd1306_t *p, uint32_t x, uint32_t y) {
-    if (x >= p->width || y >= p->height) return;
-    p->buffer[x + p->width * (y >> 3)] |= 0x1 << (y & 0x07);
+    if (x >= p->width || y >= p->height) return;             
+    p->buffer[x + p->width * (y >> 3)] |= 0x1 << (y & 0x07); 
 }
 void ssd1306_show(ssd1306_t *p) {
     uint8_t temp_buf[1025];
@@ -51,4 +51,9 @@ void ssd1306_show(ssd1306_t *p) {
     }
 
     i2c_write_blocking(current_i2c, current_addr, temp_buf, sizeof(temp_buf), false);
+}
+void ssd1306_clear(ssd1306_t *p) {
+    for (int i = 0; i < 1024; i++) {
+        p->buffer[i] = 0;
+    }
 }
